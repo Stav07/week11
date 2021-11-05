@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Meal Charge Calculation
+    </title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+        h1 {
+            font-family: 'Lobster', cursive;
+        }
+
+        body {
+            background: linear-gradient(to right, red 0%, purple 100%);
+            color: white;
+        }
+
+        img {
+            width: 400px;
+            height: auto;
+            float: left;
+            border-radius: 5rem;
+        }
+
+        table.outer {
+            border: solid whitesmoke 10px;
+            border-collapse: collapse;
+            padding: 3px;
+        }
+
+        table.inner {
+            border: black 3px;
+            padding: 3px;
+        }
+
+        a:link,
+        a:visited {
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        #homepage {
+            position: fixed;
+            bottom: 0;
+            color: white;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <table class="outer">
+        <tr>
+            <td>
+                <form name="theform">
+                    <h1>Meal Charge Calculation</h1>
+                    <h2>Calculate total meal cost. Tax is 8.25 % of the meal cost. Tips is 15% of the meal const
+                        Total meal cost is equal to the meal cost plus the tax and plus the tip.<br>
+                    </h2>
+                    <h3>Enter meal cost: <input name="mealCostFm" size="10"><br>
+                        <img src="burger.jpg" alt="Burger">
+                    </h3>
+
+
+                    <table class="inner">
+                        <tr>
+                            <td colspan="2">
+                                <h2><strong>Description Price</strong></h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meal Cost:</strong></td>
+                            <td style="background-color: white; color: black" id="mealFmOutput"></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Tax: (8.25%) </strong></td>
+                            <td style="background-color: white; color: black" id="taxFmOutput"></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Tip: (15%) </strong></td>
+                            <td style="background-color: white; color: black" id="tipFmOutput"></td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Total: </strong></td>
+                            <td style="background-color: white; color: black" id="totalFmOutput"></td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="button" name="calc" value="Calculate" onclick="calculate();"></td>
+                            <td><input type="button" name="clear" value="Clear" onclick="clearinfo();">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        //declare the calculate function
+        function calculate() {
+            const tax = .0825;
+            const tip = .15;
+
+            var mealCost
+            var taxCost
+            var tipCost
+            var total
+
+            //Get the value from the text field
+
+            mealCost = parseFloat(document.theform.mealCostFm.value)
+
+            //Perform all calculations
+            taxCost = parseFloat(mealCost * tax);
+            tipCost = parseFloat(mealCost * tip);
+            total = parseFloat(mealCost + taxCost + tipCost);
+
+            //display all calculations
+
+            document.getElementById("mealFmOutput").innerHTML = "$ " + mealCost.toFixed(2);
+            document.getElementById("taxFmOutput").innerHTML = "$ " + taxCost.toFixed(2);
+            document.getElementById("tipFmOutput").innerHTML = "$ " + tipCost.toFixed(2);
+            document.getElementById("totalFmOutput").innerHTML = "$ " + total.toFixed(2);
+        }
+
+        function clearinfo() {
+            document.theform.mealCostFm.value = " ";
+
+            document.getElementById("mealFmOutput").innerHTML = " ";
+            document.getElementById("taxFmOutput").innerHTML = " ";
+            document.getElementById("tipFmOutput").innerHTML = " ";
+            document.getElementById("totalFmOutput").innerHTML = " ";
+
+            document.theform.mealCostFm.focus();
+
+        }
+    </script>
+
+    <div id="homepage">
+
+        <a href="http://csnet.southtexascollege.edu/localuser/egalva37/"> Go Back To HOMPAGE</a><br>
+        Estevan Galvan
+
+    </div>
+
+</body>
+
+</html>
